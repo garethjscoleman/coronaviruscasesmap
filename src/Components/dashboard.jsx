@@ -14,11 +14,17 @@ export class Dashboard extends React.Component {
     this.sortAreas = this.sortAreas.bind(this);
     this.popDataObj ={};  
     this.dataHost= dataHost;
+    this.thedates=[];
     var date = new Date()
-    date.setDate(date.getDate()-11);
+    let daydiff= 11;
+    date.setDate(date.getDate()-daydiff);
     this.startDate =  date;
-    date = new Date()
-    date.setDate(date.getDate()- 4);
+    while( daydiff> 4){
+      daydiff--;
+      date = new Date()
+      date.setDate(date.getDate()- daydiff);
+      this.thedates.push(date.toISOString().substr(0,10));  
+    }
     this.endDate = date; 
     this.popData.sort().map((area,index) => { area.index = index; area.currentrate=0 ; area.thisweekscases = 0 ; area.thisweeksrate=0; this.popDataObj[area.areaCode]= area});
   }
@@ -27,7 +33,10 @@ export class Dashboard extends React.Component {
   {
     if (!this.state.started){
       this.setState({thedata:[],started:true});
-      this.getTheData(dataHost + dataEndpoint)
+      this.thedates.map(thedate => {       
+             let dataEndpointForThisWeek = dataEndpoint.replace('{date}',thedate);
+             this.getTheData(dataHost + dataEndpointForThisWeek)
+      });
     
     }
 
@@ -89,15 +98,10 @@ export class Dashboard extends React.Component {
   render() {  
     var  popData = this.popData;
 
-//                { this.state.thedata.length<1 ? <p>Not Yet</p>: this.state.thedata.map((value, index) => {
-//  return <li key={index}>{value.areaCode} {value.date} {value.areaName} {value.area.lat} {value.area.long} {value.area.pop} {value.cases} {value.rate}</li>
-// })}
-
-//<li key={index}> {popDataObj[value.areaCode].areaName} {popDataObj[value.areaCode].lat} {popDataObj[value.areaCode].long} {popDataObj[value.areaCode].pop} {popDataObj[value.areaCode].thisweekscases} {popDataObj[value.areaCode].thisweeksrate}</li>
 
   let listStyle={listStyleType:'none'};  
   let divStyle = {height:'800px',width:'600px'}
-  return <div style={{divStyle}}><h3>Loading Regional Data {this.state.thedata.length} of about 50,000</h3>
+  return <div style={{divStyle}}><h3>Loading Regional Data {this.state.thedata.length} of about 3,000</h3>
     <ul >
       {  popData.length <1 ? <p>Not Yet</p>: popData.sort(this.sortAreas).map((value, index) =>{ 
             

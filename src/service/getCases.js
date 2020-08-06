@@ -1,9 +1,9 @@
 
 const axios = require("axios");
 
-export const dataEndpoint = '/v1/data?filters=areaType=ltla&structure=%7B%22areaName%22:%22areaName%22,%22areaCode%22:%22areaCode%22,%22cases%22:%22newCasesBySpecimenDate%22,%22date%22:%22date%22%7D&page=1' ;
-export const dataHost ='https://api.coronavirus-staging.data.gov.uk';
+export const dataEndpoint = '/v1/data?filters=areaType=ltla;date={date}&structure=%7B%22areaName%22:%22areaName%22,%22areaCode%22:%22areaCode%22,%22cases%22:%22newCasesBySpecimenDate%22,%22date%22:%22date%22%7D&page=1' ;
 
+export const dataHost ='https://api.coronavirus.data.gov.uk';
 
 export function getCases(endPoint){ 
     return getcase(endPoint);

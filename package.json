@@ -2,6 +2,7 @@
   "name": "mapcases",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://garethjscoleman.github.io/coronaviruscasesmap",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -9,11 +10,14 @@
     "@types/react": "^16.9.43",
     "@types/react-dom": "^16.9.8",
     "axios": "^0.19.2",
+    "gh-pages": "^3.1.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -b gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
