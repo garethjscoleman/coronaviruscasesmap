@@ -3,7 +3,8 @@ import React from 'react';
 
 export class Footer extends React.Component {
     render() {
-        return ( <h1> Gareth Coleman </h1>);
+        return ( <div><h2> Gareth Coleman </h2>
+            <h3>Data provided by UK government data api</h3></div>);
     }
 }
 

@@ -99,9 +99,7 @@ export class Dashboard extends React.Component {
     var  popData = this.popData;
 
 
-  let listStyle={listStyleType:'none'};  
-  let divStyle = {height:'800px',width:'600px'}
-  return <div style={{divStyle}}><h3>Loading Regional Data {this.state.thedata.length} of about 3,000</h3>
+  return <div ><h3>Loading Regional Data {this.state.thedata.length} of about 3,000</h3>
     <ul >
       {  popData.length <1 ? <p>Not Yet</p>: popData.sort(this.sortAreas).map((value, index) =>{ 
             
