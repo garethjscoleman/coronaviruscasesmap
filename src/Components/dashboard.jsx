@@ -8,7 +8,7 @@ export class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.areaInfo = areaData;
-    this.state = { thedata: [], started: false };
+    this.state = { thedata: [], started: false, dataloaded:0 };
     this.getTheData = this.getTheData.bind(this);
     this.popData = areaData().sort();
     this.sortAreas = this.sortAreas.bind(this);
@@ -26,7 +26,7 @@ export class Dashboard extends React.Component {
       this.thedates.push(date.toISOString().substr(0, 10));
     }
     this.endDate = date;
-    this.popData.sort().map((area, index) => { area.index = index; area.currentrate = 0; area.thisweekscases = 0; area.thisweeksrate = 0; this.popDataObj[area.areaCode] = area });
+    this.popData.sort().map((area, index) => { area.index = index; area.currentrate = 0; area.thisweekscases = 0; area.thisweeksrate = 0; this.popDataObj[area.areaCode] = area;return null });
   }
 
   componentDidMount() {
@@ -34,7 +34,8 @@ export class Dashboard extends React.Component {
       this.setState({ thedata: [], started: true });
       this.thedates.map(thedate => {
         let dataEndpointForThisWeek = dataEndpoint.replace('{date}', thedate);
-        this.getTheData(dataHost + dataEndpointForThisWeek)
+        this.getTheData(dataHost + dataEndpointForThisWeek);
+        return null;
       });
 
     }
@@ -54,7 +55,6 @@ export class Dashboard extends React.Component {
   getTheData(url) {
     getCases(url).then(data => {
       var allData = this.state.thedata;
-      var i = 0;
       let casedate;
       data.data.map(value => {
         try {
@@ -65,21 +65,27 @@ export class Dashboard extends React.Component {
               this.popDataObj[value.areaCode].thisweekscases = this.popDataObj[value.areaCode].thisweekscases + value.cases;
             }
           }
+          return null;
         }
         catch
         {
           console.log(value.areaCode)
         }
         allData.push(value);
+        return null;
+  
       });
 
       this.popData.map(value => {
         this.popDataObj[value.areaCode].currentrate = Math.round(this.popDataObj[value.areaCode].thisweekscases / (this.popDataObj[value.areaCode].pop / 100000))
         value.currentrate = this.popDataObj[value.areaCode].currentrate;
         value.thisweekscases = this.popDataObj[value.areaCode].thisweekscases;
+        return null;
       })
+      let dataloaded = this.state.dataloaded+1;
 
-      this.setState({ thedata: allData });
+      this.setState({ thedata: allData,dataloaded:dataloaded });
+
       if (allData.length < 70000 && (typeof (data.pagination.next) != 'undefined' && !!data.pagination.next)) {
         this.getTheData(this.dataHost + data.pagination.next)
       }
@@ -92,23 +98,26 @@ export class Dashboard extends React.Component {
   render() {
     var popData = this.popData;
     var mapStyle= {
-      height:"1790px",
-      width:"1275px",
+      height:"1835px",
+      width:"1325px",
       position:"absolute",
-      top:"-97px",
-      left:"0px",
+      top:"-135px",
+      left:"-57px",
       zIndex:-1
     }
 
-    return <div ><h3>Loading Regional Data {this.state.thedata.length} of about 3,000</h3>
+    return <div >
+      {this.state.dataloaded<7 && <h3>Loading Regional Daily Data for last full week of data {this.state.dataloaded} of 7</h3>}
       <ul>
-        {popData.length < 1 ? <p>Not Yet</p> : popData.sort(this.sortAreas).map((value, index) => {
+        {popData.length < 1 ? <li key={-9999} index={-99999}>Not Yet</li> :
+         popData.sort(this.sortAreas).map((value, index) => {
 
           return <Location area={value.areaName}
             rate={value.currentrate}
             lat={value.lat}
             long={value.long}
-            index={value.index} />
+            index={value.index}
+            key={value.index} />
         })}
       </ul>
       <img 

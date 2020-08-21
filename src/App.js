@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import logo from './logo.svg';
 import {Dashboard} from './Components/dashboard';
 import {Footer} from './Components/footer';
@@ -10,7 +10,7 @@ function App() {
   let footerTitle = "Gareth Coleman"
   return (
     <div className="App">
-      <Header title="Coronavirus Case Rate in the last 5-10 days by Local Authority"></Header>
+      <Header title="Coronavirus Case Rate in the last week by Local Authority"></Header>
       <Dashboard ></Dashboard>
       <Footer title={footerTitle}></Footer>
     </div>
