@@ -4,8 +4,8 @@ import React from 'react';
 export class Location extends React.Component {
 
     render() {
-          let latscale = -297.21363;
-          let longscale = 172.245;
+          let latscale = -297.363;
+          let longscale = 172.255;
           let latoffset = -16630;
           let longoffset =  -1175.970584;
 
