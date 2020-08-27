@@ -4,16 +4,20 @@ import React from 'react';
 export class Location extends React.Component {
 
     render() {
+          let latscale = -297.21363;
+          let longscale = 172.245;
+          let latoffset = -16630;
+          let longoffset =  -1175.970584;
 
-          let lati = Math.round((56-this.props.lat)*250);
-          let longi = Math.round((6.5+this.props.long)*150);
+          let lati =  Math.round(((this.props.lat)*  latscale)-latoffset) ;
+          let longi = Math.round(((this.props.long)*  longscale)-longoffset );
           let rate = this.props.rate;
-          let scale = Math.min(Math.max(0.3,rate/50),1.75);
+          let textscale = Math.min(Math.max(0.3,rate/50),1.75);
           const re = /\s/
-          let widthoftext=this.props.area.split(re)[0].length * scale *(13)
+          let widthoftext=this.props.area.split(re)[0].length * textscale *(13)
           let leftpos = longi-(0.5*widthoftext)
           let myStyle = { listStyleType:'none',
-                            fontSize: scale.toString()+'em' ,
+                            fontSize: textscale.toString()+'em' ,
                             position:'absolute',
                             left:leftpos,
                             top:lati, 

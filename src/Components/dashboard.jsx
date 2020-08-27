@@ -99,10 +99,10 @@ export class Dashboard extends React.Component {
     var popData = this.popData;
     var mapStyle= {
       height:"1835px",
-      width:"1325px",
+//      width:"1325px",
       position:"absolute",
-      top:"-135px",
-      left:"-57px",
+      top:"0px",
+      left:"0px",
       zIndex:-1
     }
 
