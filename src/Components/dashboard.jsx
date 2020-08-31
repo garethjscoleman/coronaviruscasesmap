@@ -1,5 +1,5 @@
 import { getCases, dataEndpoint, dataHost } from '../service/getCases';
-import React, { Component } from 'react'
+import React from 'react'
 import areaData from '../service/areaPop'
 import { Location } from './location'
 
