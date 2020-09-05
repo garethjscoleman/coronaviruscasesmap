@@ -2,16 +2,18 @@ import { getCases, dataEndpoint, dataHost } from '../service/getCases';
 import React from 'react'
 import areaData from '../service/areaPop'
 import { Location } from './location'
+import './dashboard.css'
 
 export class Dashboard extends React.Component {
 
   constructor(props) {
     super(props);
     this.areaInfo = areaData;
-    this.state = { thedata: [], started: false, dataloaded:0 };
+    this.state = { thedata: [], started: false, dataloaded:0, mapDisplay:true };
     this.getTheData = this.getTheData.bind(this);
     this.popData = areaData().sort();
     this.sortAreas = this.sortAreas.bind(this);
+    this.toggleMapDisplay = this.toggleMapDisplay.bind(this); 
     this.popDataObj = {};
     this.dataHost = dataHost;
     this.thedates = [];
@@ -56,48 +58,60 @@ export class Dashboard extends React.Component {
     getCases(url).then(data => {
       var allData = this.state.thedata;
       let casedate;
-      data.data.map(value => {
-        try {
-          value.rate = value.cases / (this.popDataObj[value.areaCode].pop / 100000);
-          casedate = new Date(Date.parse(value.date));
-          if (casedate > this.startDate && casedate < this.endDate) {
-            if (value.cases > 0) {
-              this.popDataObj[value.areaCode].thisweekscases = this.popDataObj[value.areaCode].thisweekscases + value.cases;
-            }
-          }
-          return null;
-        }
-        catch
+      if (!!data.data )
+      {
+        data.data.map(value => 
         {
-          console.log(value.areaCode)
+          try 
+          {
+            value.rate = value.cases / (this.popDataObj[value.areaCode].pop / 100000);
+            casedate = new Date(Date.parse(value.date));
+            if (casedate > this.startDate && casedate < this.endDate) {
+              if (value.cases > 0) {
+                this.popDataObj[value.areaCode].thisweekscases = this.popDataObj[value.areaCode].thisweekscases + value.cases;
+              }
+            }
+            return null;
+          }
+          catch
+          {
+            console.log(value.areaCode)
+          }
+          allData.push(value);
+          return null;
+        });
+      
+
+        this.popData.map(value => {
+          this.popDataObj[value.areaCode].currentrate = Math.round(this.popDataObj[value.areaCode].thisweekscases / (this.popDataObj[value.areaCode].pop / 100000))
+          value.currentrate = this.popDataObj[value.areaCode].currentrate;
+          value.thisweekscases = this.popDataObj[value.areaCode].thisweekscases;
+          return null;
+        })
+        let dataloaded = this.state.dataloaded+1;
+
+        this.setState({ thedata: allData,dataloaded:dataloaded });
+
+        if (allData.length < 70000 && (typeof (data.pagination.next) != 'undefined' && !!data.pagination.next)) {
+          this.getTheData(this.dataHost + data.pagination.next)
         }
-        allData.push(value);
-        return null;
-  
-      });
-
-      this.popData.map(value => {
-        this.popDataObj[value.areaCode].currentrate = Math.round(this.popDataObj[value.areaCode].thisweekscases / (this.popDataObj[value.areaCode].pop / 100000))
-        value.currentrate = this.popDataObj[value.areaCode].currentrate;
-        value.thisweekscases = this.popDataObj[value.areaCode].thisweekscases;
-        return null;
-      })
-      let dataloaded = this.state.dataloaded+1;
-
-      this.setState({ thedata: allData,dataloaded:dataloaded });
-
-      if (allData.length < 70000 && (typeof (data.pagination.next) != 'undefined' && !!data.pagination.next)) {
-        this.getTheData(this.dataHost + data.pagination.next)
       }
-
 
     });
 
   }
 
+  toggleMapDisplay(){
+    this.setState({ mapDisplay: !this.state.mapDisplay });
+  }
+
   render() {
     var popData = this.popData;
+    let mapdisplay = 'block';
+
+    if (!this.state.mapDisplay) { mapdisplay = 'none' }
     var mapStyle= {
+      display:mapdisplay,
       height:"1835px",
 //      width:"1325px",
       position:"absolute",
@@ -106,7 +120,12 @@ export class Dashboard extends React.Component {
       zIndex:-1
     }
 
-    return <div >
+    return <div>
+        <label className="switch">
+          <input type="checkbox" checked={this.state.mapDisplay} onChange={this.toggleMapDisplay}/>
+          <span className="slider round"></span>
+          <span className="label">Display map background</span>
+      </label>
       {this.state.dataloaded<7 && <h3>Loading Regional Daily Data for last full week of data {this.state.dataloaded} of 7</h3>}
       <ul>
         {popData.length < 1 ? <li key={-9999} index={-99999}>Not Yet</li> :
