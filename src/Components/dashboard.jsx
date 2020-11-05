@@ -1,4 +1,4 @@
-import { getCases, dataEndpoint, dataHost } from '../service/getCases';
+import { getCases, dataEndpoint, deathdataEndpoint, dataHost } from '../service/getCases';
 import React from 'react'
 import areaData from '../service/areaPop'
 import { Location } from './location'
@@ -28,7 +28,7 @@ export class Dashboard extends React.Component {
       this.thedates.push(date.toISOString().substr(0, 10));
     }
     this.endDate = date;
-    this.popData.sort().map((area, index) => { area.index = index; area.currentrate = 0; area.thisweekscases = 0; area.thisweeksrate = 0; this.popDataObj[area.areaCode] = area;return null });
+    this.popData.sort().map((area, index) => { area.index = index; area.currentrate = 0;area.currentdeathrate = 0; area.thisweekscases = 0; area.thisweeksdeaths = 0; area.thisweeksrate = 0; this.popDataObj[area.areaCode] = area;return null });
   }
 
   componentDidMount() {
@@ -37,6 +37,8 @@ export class Dashboard extends React.Component {
       this.thedates.map(thedate => {
         let dataEndpointForThisWeek = dataEndpoint.replace('{date}', thedate);
         this.getTheData(dataHost + dataEndpointForThisWeek);
+        let deathdataEndpointForThisWeek = deathdataEndpoint.replace('{date}', thedate);
+        this.getTheData(dataHost + deathdataEndpointForThisWeek);
         return null;
       });
 
@@ -64,11 +66,21 @@ export class Dashboard extends React.Component {
         {
           try 
           {
-            value.rate = value.cases / (this.popDataObj[value.areaCode].pop / 100000);
-            casedate = new Date(Date.parse(value.date));
+            if (value.deaths+''!=='')
+            {
+              value.rate = value.deaths / (this.popDataObj[value.areaCode].pop / 10000);
+            }
+            else
+            {
+              value.rate = value.cases / (this.popDataObj[value.areaCode].pop / 100000);
+            }
+              casedate = new Date(Date.parse(value.date));
             if (casedate > this.startDate && casedate < this.endDate) {
               if (value.cases > 0) {
                 this.popDataObj[value.areaCode].thisweekscases = this.popDataObj[value.areaCode].thisweekscases + value.cases;
+              }
+              if (value.deaths > 0) {
+                this.popDataObj[value.areaCode].thisweeksdeaths = this.popDataObj[value.areaCode].thisweeksdeaths + value.deaths;
               }
             }
             return null;
@@ -84,8 +96,11 @@ export class Dashboard extends React.Component {
 
         this.popData.map(value => {
           this.popDataObj[value.areaCode].currentrate = Math.round(this.popDataObj[value.areaCode].thisweekscases / (this.popDataObj[value.areaCode].pop / 100000))
+          this.popDataObj[value.areaCode].currentdeathrate = Math.round(this.popDataObj[value.areaCode].thisweeksdeaths / (this.popDataObj[value.areaCode].pop / 1000000))
           value.currentrate = this.popDataObj[value.areaCode].currentrate;
+          value.currentdeathrate = this.popDataObj[value.areaCode].currentdeathrate;
           value.thisweekscases = this.popDataObj[value.areaCode].thisweekscases;
+          value.thisweeksdeaths = this.popDataObj[value.areaCode].thisweeksdeaths;
           return null;
         })
         let dataloaded = this.state.dataloaded+1;
@@ -133,14 +148,16 @@ export class Dashboard extends React.Component {
 
           return <Location area={value.areaName}
             rate={value.currentrate}
+            deathrate = {value.currentdeathrate}
             lat={value.lat}
             long={value.long}
             index={value.index}
-            key={value.index} />
+            key={value.index}
+            type={value.type} />
         })}
       </ul>
       <img 
-    src={process.env.PUBLIC_URL + '/england.svg'} 
+    src={process.env.PUBLIC_URL + '/British_Isles.svg'} 
     alt="map of england" 
     
     style={mapStyle} />

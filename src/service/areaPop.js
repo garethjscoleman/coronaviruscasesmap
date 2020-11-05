@@ -1,11 +1,82 @@
-export default function areaData() {return [{
+export default function areaData() {
+    return [{
+            type: 'Region',
+            areaName: "East Midlands",
+            areaCode: "E12000004",
+            long: -0.84966999,
+            lat: 52.79571915,
+            pop: 4835928
+        },
+        {
+            type: 'Region',
+            areaName: "East of England",
+            areaCode: "E12000006",
+            long: 0.50414598,
+            lat: 52.24066925,
+            pop: 6236072
+        },
+        {
+            type: 'Region',
+            areaName: "London",
+            areaCode: "E12000007",
+            long: -0.30864,
+            lat: 51.49227142,
+            pop: 8961989
+        },
+        {
+            type: 'Region',
+            areaName: "North East",
+            areaCode: "E12000001",
+            long: -2.42889996,
+            lat: 54.5970314,
+            pop: 2669941
+        },
+        {
+            type: 'Region',
+            areaName: "North West",
+            areaCode: "E12000002",
+            long: -2.7723701,
+            lat: 54.00945145,
+            pop: 7341196
+        },
+        {
+            type: 'Region',
+            areaName: "South East",
+            areaCode: "E12000008",
+            long: -0.99311,
+            lat: 51.4509697,
+            pop: 9180135
+        },
+        {
+            type: 'Region',
+            areaName: "South West",
+            areaCode: "E12000002",
+            long: 	-3.63343,
+            lat: 	50.81119156,
+            pop: 5289000
+        },
+        {
+            type: 'Region',
+            areaName: "West Midlands",
+            areaCode: "E12000005",
+            long: -2.2035799,
+            lat: 52.55696869,
+            pop: 5934037
+        },
+        {
+            type: 'Region',
+            areaName: "Yorkshire and The Humber",
+            areaCode: "E12000003",
+            long: -1.28711998,
+            lat: 53.93264008,
+            pop: 5502967
+        }, {
             areaCode: 'E06000001',
             areaName: 'Hartlepool',
             long: -1.27023005,
             lat: 54.67615891,
             pop: 93242
-        },
-        {
+        }, {
             areaCode: 'E06000002',
             areaName: 'Middlesbrough',
             long: -1.21098995,
@@ -1955,4 +2026,332 @@ export default function areaData() {return [{
             long: -0.15295,
             lat: 51.51221085,
             pop: 255324
-        }];}
+        }, {
+            areaCode: 'S12000005',
+            areaName: 'Clackmannanshire',
+            long: -3.7534399,
+            lat: 56.14723969,
+            pop: 51450
+        }, {
+            areaCode: 'S12000006',
+            areaName: 'Dumfries and Galloway',
+            long: -4.02862978,
+            lat: 55.09621811,
+            pop: 149200
+        }, {
+            areaCode: 'S12000008',
+            areaName: 'East Ayrshire',
+            long: -4.29056978,
+            lat: 55.49673843,
+            pop: 121940
+        }, {
+            areaCode: 'S12000010',
+            areaName: 'East Lothian',
+            long: -2.72434998,
+            lat: 55.94207001,
+            pop: 104840
+        }, {
+            areaCode: 'S12000011',
+            areaName: 'East Renfrewshire',
+            long: -4.36059999,
+            lat: 55.74868011,
+            pop: 94760
+        }, {
+            areaCode: 'S12000013',
+            areaName: 'Na h-Eileanan Siar',
+            long: -6.65721989,
+            lat: 58.19937897,
+            pop: 26950
+        }, {
+            areaCode: 'S12000014',
+            areaName: 'Falkirk',
+            long: -3.77060008,
+            lat: 55.99604034,
+            pop: 160130
+        }, {
+            areaCode: 'S12000015',
+            areaName: 'Fife',
+            long: -2.98235011,
+            lat: 56.23117065,
+            pop: 371410
+        }, {
+            areaCode: 'S12000017',
+            areaName: 'Highland',
+            long: -4.66091013,
+            lat: 57.586689,
+            pop: 235180
+        }, {
+            areaCode: 'S12000018',
+            areaName: 'Inverclyde',
+            long: -4.75387001,
+            lat: 55.90034866,
+            pop: 78760
+        }, {
+            areaCode: 'S12000019',
+            areaName: 'Midlothian',
+            long: -3.1173799,
+            lat: 55.82110977,
+            pop: 90090
+        }, {
+            areaCode: 'S12000020',
+            areaName: 'Moray',
+            long: -3.20186996,
+            lat: 57.47682953,
+            pop: 95780
+        }, {
+            areaCode: 'S12000021',
+            areaName: 'North Ayrshire',
+            long: -4.7247901,
+            lat: 55.72787857,
+            pop: 135790
+        }, {
+            areaCode: 'S12000023',
+            areaName: 'Orkney Islands',
+            long: -2.90028,
+            lat: 58.9433403,
+            pop: 22000
+        }, {
+            areaCode: 'S12000024',
+            areaName: 'Perth and Kinross',
+            long: -3.88479996,
+            lat: 56.57529068,
+            pop: 151100
+        }, {
+            areaCode: 'S12000026',
+            areaName: 'Scottish Borders',
+            long: -2.85865998,
+            lat: 55.52593994,
+            pop: 115020
+        }, {
+            areaCode: 'S12000027',
+            areaName: 'Shetland Islands',
+            long: -1.37344003,
+            lat: 60.50495148,
+            pop: 23080
+        }, {
+            areaCode: 'S12000028',
+            areaName: 'South Ayrshire',
+            long: -4.72901011,
+            lat: 55.23006821,
+            pop: 112680
+        }, {
+            areaCode: 'S12000029',
+            areaName: 'South Lanarkshire',
+            long: -3.83272004,
+            lat: 55.60453033,
+            pop: 318170
+        }, {
+            areaCode: 'S12000030',
+            areaName: 'Stirling',
+            long: -4.32595015,
+            lat: 56.24953079,
+            pop: 94000
+        }, {
+            areaCode: 'S12000033',
+            areaName: 'Aberdeen City',
+            long: -2.20397997,
+            lat: 57.1669693,
+            pop: 228800
+        }, {
+            areaCode: 'S12000034',
+            areaName: 'Aberdeenshire',
+            long: -2.79204988,
+            lat: 57.23468018,
+            pop: 261800
+        }, {
+            areaCode: 'S12000035',
+            areaName: 'Argyll and Bute',
+            long: -5.22113991,
+            lat: 56.28942871,
+            pop: 86810
+        }, {
+            areaCode: 'S12000036',
+            areaName: 'City of Edinburgh',
+            long: -3.27825999,
+            lat: 55.91119003,
+            pop: 513210
+        }, {
+            areaCode: 'S12000038',
+            areaName: 'Renfrewshire',
+            long: -4.56833982,
+            lat: 55.84862137,
+            pop: 176830
+        }, {
+            areaCode: 'S12000039',
+            areaName: 'West Dunbartonshire',
+            long: -4.52074003,
+            lat: 56.00141144,
+            pop: 89610
+        }, {
+            areaCode: 'S12000040',
+            areaName: 'West Lothian',
+            long: -3.60909009,
+            lat: 55.89920044,
+            pop: 181310
+        }, {
+            areaCode: 'S12000041',
+            areaName: 'Angus',
+            long: -2.89189005,
+            lat: 56.72480011,
+            pop: 116280
+        }, {
+            areaCode: 'S12000042',
+            areaName: 'Dundee City',
+            long: -2.97094989,
+            lat: 56.4776001,
+            pop: 148710
+        }, {
+            areaCode: 'S12000044',
+            areaName: 'North Lanarkshire',
+            long: -3.95140004,
+            lat: 55.86814117,
+            pop: 339960
+        }, {
+            areaCode: 'S12000045',
+            areaName: 'East Dunbartonshire',
+            long: -4.22417021,
+            lat: 55.9582901,
+            pop: 108130
+        }, {
+            areaCode: 'S12000046',
+            areaName: 'Glasgow City',
+            long: -4.21478987,
+            lat: 55.87649155,
+            pop: 621020
+        }, {
+            areaCode: 'W06000001',
+            areaName: 'Isle of Anglesey',
+            long: -4.32290983,
+            lat: 53.27944946,
+            pop: 70043
+        }, {
+            areaCode: 'W06000002',
+            areaName: 'Gwynedd',
+            long: -3.8155899,
+            lat: 52.89825821,
+            pop: 124560
+        }, {
+            areaCode: 'W06000003',
+            areaName: 'Conwy',
+            long: -3.74645996,
+            lat: 53.14738846,
+            pop: 117203
+        }, {
+            areaCode: 'W06000004',
+            areaName: 'Denbighshire',
+            long: -3.34761,
+            lat: 53.08832932,
+            pop: 95696
+        }, {
+            areaCode: 'W06000005',
+            areaName: 'Flintshire',
+            long: -3.17604995,
+            lat: 53.21498108,
+            pop: 156100
+        }, {
+            areaCode: 'W06000006',
+            areaName: 'Wrexham',
+            long: -2.99202991,
+            lat: 53.00167084,
+            pop: 135957
+        }, {
+            areaCode: 'W06000008',
+            areaName: 'Ceredigion',
+            long: -3.94993997,
+            lat: 52.29795074,
+            pop: 72695
+        }, {
+            areaCode: 'W06000009',
+            areaName: 'Pembrokeshire',
+            long: -4.90818024,
+            lat: 51.85512161,
+            pop: 125818
+        }, {
+            areaCode: 'W06000010',
+            areaName: 'Carmarthenshire',
+            long: -4.2111001,
+            lat: 51.89495087,
+            pop: 188771
+        }, {
+            areaCode: 'W06000011',
+            areaName: 'Swansea',
+            long: -3.96723008,
+            lat: 51.65805817,
+            pop: 246993
+        }, {
+            areaCode: 'W06000012',
+            areaName: 'Neath Port Talbot',
+            long: -3.74638009,
+            lat: 51.64450073,
+            pop: 143315
+        }, {
+            areaCode: 'W06000013',
+            areaName: 'Bridgend',
+            long: -3.61359,
+            lat: 51.56058121,
+            pop: 147049
+        }, {
+            areaCode: 'W06000014',
+            areaName: 'Vale of Glamorgan',
+            long: -3.39803004,
+            lat: 51.44837952,
+            pop: 133587
+        }, {
+            areaCode: 'W06000015',
+            areaName: 'Cardiff',
+            long: -3.22212005,
+            lat: 51.50254059,
+            pop: 366903
+        }, {
+            areaCode: 'W06000016',
+            areaName: 'Rhondda Cynon Taf',
+            long: -3.41358995,
+            lat: 51.62184906,
+            pop: 241264
+        }, {
+            areaCode: 'W06000018',
+            areaName: 'Caerphilly',
+            long: -3.19753003,
+            lat: 51.65000916,
+            pop: 181075
+        }, {
+            areaCode: 'W06000019',
+            areaName: 'Blaenau Gwent',
+            long: -3.18592,
+            lat: 51.75363922,
+            pop: 69862
+        }, {
+            areaCode: 'W06000020',
+            areaName: 'Torfaen',
+            long: -3.05100989,
+            lat: 51.69836044,
+            pop: 93961
+        }, {
+            areaCode: 'W06000021',
+            areaName: 'Monmouthshire',
+            long: -2.90280008,
+            lat: 51.77827072,
+            pop: 94590
+        }, {
+            areaCode: 'W06000022',
+            areaName: 'Newport',
+            long: -2.89769006,
+            lat: 51.58232117,
+            pop: 154676
+        }, {
+            areaCode: 'W06000023',
+            areaName: 'Powys',
+            long: -3.43532991,
+            lat: 52.348629,
+            pop: 132435
+        }, {
+            areaCode: 'W06000024',
+            areaName: 'Merthyr Tydfil',
+            long: -3.36424994,
+            lat: 51.74858093,
+            pop: 60326
+        }
+    ];
+}
+
+
