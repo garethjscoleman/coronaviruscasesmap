@@ -2201,7 +2201,7 @@ export default function areaData() {
             lat: 56.4776001,
             pop: 148710
         }, {
-            areaCode: 'S12000044',
+            areaCode: 'S12000050',
             areaName: 'North Lanarkshire',
             long: -3.95140004,
             lat: 55.86814117,
@@ -2213,7 +2213,7 @@ export default function areaData() {
             lat: 55.9582901,
             pop: 108130
         }, {
-            areaCode: 'S12000046',
+            areaCode: 'S12000049',
             areaName: 'Glasgow City',
             long: -4.21478987,
             lat: 55.87649155,
